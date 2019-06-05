@@ -1,0 +1,4 @@
+
+*.new
+
+components/prueba_statemachine/\.idea/

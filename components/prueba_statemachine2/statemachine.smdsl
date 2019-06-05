@@ -1,0 +1,11 @@
+Machine_testcpp{
+    states initialize, compute;
+    initial_state start_waiting;
+    end_state finalize;
+    transition{
+        start_waiting => initialize;
+        initialize => compute;
+        compute => compute;
+        compute => finalize;
+    };
+};
