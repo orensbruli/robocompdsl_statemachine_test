@@ -23,7 +23,7 @@
 */
 SpecificWorker::SpecificWorker(MapPrx& mprx) : GenericWorker(mprx)
 {
-
+	QObject::connect(&timer, SIGNAL(timeout()), this, SIGNAL(computetocompute()));
 }
 
 /**
@@ -32,6 +32,7 @@ SpecificWorker::SpecificWorker(MapPrx& mprx) : GenericWorker(mprx)
 SpecificWorker::~SpecificWorker()
 {
 	std::cout << "Destroying SpecificWorker" << std::endl;
+	emit computetofinalize();
 }
 
 bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
@@ -55,15 +56,25 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 	return true;
 }
 
-
-void SpecificWorker::fun_initialize()
+void SpecificWorker::initialize(int period)
 {
-	std::cout<<"Entered state initialize"<<std::endl;
+	std::cout << "Initialize worker" << std::endl;
+	this->Period = period;
+	emit start_waitingtoinitialize();
 }
 
 void SpecificWorker::fun_compute()
 {
 	std::cout<<"Entered state compute"<<std::endl;
+}
+
+void SpecificWorker::fun_initialize()
+{
+	std::cout<<"Entered initial state initialize"<<std::endl;
+
+
+	timer.start(Period);
+	emit this->initializetocompute();
 }
 
 void SpecificWorker::fun_start_waiting()
