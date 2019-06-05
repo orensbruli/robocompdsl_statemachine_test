@@ -2,3 +2,11 @@
 *.new
 
 components/prueba_statemachine/\.idea/
+
+components/prueba_statemachine2/\.idea/
+
+components/prueba_statemachine2/cmake-build-debug/
+
+components/prueba_statemachine2/build/
+
+components/prueba_statemachine2/bin/
