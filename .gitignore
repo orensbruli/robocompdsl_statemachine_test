@@ -10,3 +10,21 @@ components/prueba_statemachine2/cmake-build-debug/
 components/prueba_statemachine2/build/
 
 components/prueba_statemachine2/bin/
+
+components/customStateMachine/cmake-build-debug/
+
+components/customStateMachine/\.idea/
+
+components/noSmdslTest/cmake-build-debug/
+
+components/noSmdslTest/build/
+
+components/noSmdslTest/\.idea/
+
+components/defaultStateMachine/cmake-build-debug/
+
+components/defaultStateMachine/build/
+
+components/defaultStateMachine/bin/
+
+components/defaultStateMachine/\.idea/
