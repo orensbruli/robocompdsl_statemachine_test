@@ -78,6 +78,7 @@ class SpecificWorker(GenericWorker):
 	#
 	@QtCore.Slot()
 	def sm_three(self):
+		self.threetofour.emit()
 		print("Entered state three")
 		pass
 
@@ -86,6 +87,7 @@ class SpecificWorker(GenericWorker):
 	#
 	@QtCore.Slot()
 	def sm_four(self):
+		self.fourtoone.emit()
 		print("Entered state four")
 		pass
 
@@ -94,6 +96,7 @@ class SpecificWorker(GenericWorker):
 	#
 	@QtCore.Slot()
 	def sm_one(self):
+		self.onetotwo.emit()
 		print("Entered state one")
 		pass
 
