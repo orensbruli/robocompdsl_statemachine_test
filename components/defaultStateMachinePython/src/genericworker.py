@@ -69,6 +69,12 @@ class GenericWorker(QtWidgets.QWidget):
 		self.ui = Ui_guiDlg()
 		self.ui.setupUi(self)
 		self.show()
+
+		
+		self.mutex = QtCore.QMutex(QtCore.QMutex.Recursive)
+		self.Period = 30
+		self.timer = QtCore.QTimer(self)
+
 #State Machine
 		self.defaultMachine= QtCore.QStateMachine()
 		self.compute_state = QtCore.QState(self.defaultMachine)
@@ -79,22 +85,19 @@ class GenericWorker(QtWidgets.QWidget):
 
 #------------------
 #Initialization State machine
-		self.initialize.addTransition(self.initializetocompute, self.compute)
-		self.compute.addTransition(self.computetocompute, self.compute)
-		self.compute.addTransition(self.computetofinalize, self.finalize)
+		self.initialize_state.addTransition(self.initializetocompute, self.compute_state)
+		self.compute_state.addTransition(self.computetocompute, self.compute_state)
+		self.compute_state.addTransition(self.computetofinalize, self.finalize_state)
 
 
 		self.compute_state.entered.connect(self.sm_compute)
 		self.initialize_state.entered.connect(self.sm_initialize)
 		self.finalize_state.entered.connect(self.sm_finalize)
+		self.timer.timeout.connect(self.computetocompute)
 
-		self.defaultMachine.setInitialState(self.initialize)
+		self.defaultMachine.setInitialState(self.initialize_state)
 
 #------------------
-		
-		self.mutex = QtCore.QMutex(QtCore.QMutex.Recursive)
-		self.Period = 30
-		self.timer = QtCore.QTimer(self)
 
 	@QtCore.Slot()
 	def killYourSelf(self):

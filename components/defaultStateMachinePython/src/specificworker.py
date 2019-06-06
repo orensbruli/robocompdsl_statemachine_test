@@ -28,7 +28,11 @@ from genericworker import *
 class SpecificWorker(GenericWorker):
 	def __init__(self, proxy_map):
 		super(SpecificWorker, self).__init__(proxy_map)
+		self.Period = 2000
+		self.timer.start(self.Period)
+
 		self.defaultMachine.start()
+		self.destroyed.connect(self.computetofinalize)
 
 	def __del__(self):
 		print 'SpecificWorker destructor'
@@ -59,12 +63,15 @@ class SpecificWorker(GenericWorker):
 		# print r[0], r[1], r[2]
 
 		return True
+
 #Slots funtion State Machine
 	#
 	# sm_compute
 	#
 	@QtCore.Slot()
 	def sm_compute(self):
+		print("Entered state compute")
+		self.compute()
 		pass
 
 	#
@@ -72,12 +79,15 @@ class SpecificWorker(GenericWorker):
 	#
 	@QtCore.Slot()
 	def sm_initialize(self):
+		print("Entered state initialize")
+		self.initializetocompute.emit()
 		pass
 
 	#
 	# sm_finalize	#
 	@QtCore.Slot()
 	def sm_finalize(self):
+		print("Entered state finalize")
 		pass
 
 
