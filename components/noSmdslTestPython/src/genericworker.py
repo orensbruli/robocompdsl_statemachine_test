@@ -1,7 +1,5 @@
 #
-# Copyright (C)
-<@@< 2019>@@>
- by YOUR NAME HERE
+# Copyright (C) 2019 by YOUR NAME HERE
 #
 #    This file is part of RoboComp
 #
@@ -47,17 +45,40 @@ except:
 
 
 
-<@@<
 try:
-<TABHERE>from ui_mainUI import *
+	from ui_mainUI import *
 except:
-<TABHERE>print "Can't import UI file. Did you run 'make'?"
-<TABHERE>sys.exit(-1)
->@@>
+	print "Can't import UI file. Did you run 'make'?"
+	sys.exit(-1)
 
 
-class GenericWorker(
-<@@<QtWidgets.QWidget>@@>
-):
+class GenericWorker(QtWidgets.QWidget):
 
 	kill = QtCore.Signal()
+
+	def __init__(self, mprx):
+		super(GenericWorker, self).__init__()
+
+
+		self.ui = Ui_guiDlg()
+		self.ui.setupUi(self)
+		self.show()
+
+		
+		self.mutex = QtCore.QMutex(QtCore.QMutex.Recursive)
+		self.Period = 30
+		self.timer = QtCore.QTimer(self)
+
+
+	@QtCore.Slot()
+	def killYourSelf(self):
+		rDebug("Killing myself")
+		self.kill.emit()
+
+	# \brief Change compute period
+	# @param per Period in ms
+	@QtCore.Slot(int)
+	def setPeriod(self, p):
+		print "Period changed", p
+		Period = p
+		timer.start(Period)
