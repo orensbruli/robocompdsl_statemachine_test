@@ -16,6 +16,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with RoboComp.  If not, see <http://www.gnu.org/licenses/>.
 #
+from time import sleep
 
 from genericworker import *
 
@@ -44,48 +45,36 @@ class SpecificWorker(GenericWorker):
 		#	print "Error reading config params"
 		return True
 
-	@QtCore.Slot()
-	def compute(self):
-		print 'SpecificWorker.compute...'
-		#computeCODE
-		#try:
-		#	self.differentialrobot_proxy.setSpeedBase(100, 0)
-		#except Ice.Exception, e:
-		#	traceback.print_exc()
-		#	print e
-
-		# The API of python-innermodel is not exactly the same as the C++ version
-		# self.innermodel.updateTransformValues("head_rot_tilt_pose", 0, 0, 0, 1.3, 0, 0)
-		# z = librobocomp_qmat.QVec(3,0)
-		# r = self.innermodel.transform("rgbd", z, "laser")
-		# r.printvector("d")
-		# print r[0], r[1], r[2]
-
-		return True
 
 #Slots funtion State Machine
 	#
-	# 2sm_two
+	# sm_two
 	#
 	@QtCore.Slot()
 	def sm_two(self):
 		print("Entered state two")
+		sleep(1)
+		self.twotothree.emit()
 		pass
 
 	#
-	# 2sm_three
+	# sm_three
 	#
 	@QtCore.Slot()
 	def sm_three(self):
 		print("Entered state three")
+		sleep(1)
+		self.threetofour.emit()
 		pass
 
 	#
-	# 2sm_four
+	# sm_four
 	#
 	@QtCore.Slot()
 	def sm_four(self):
 		print("Entered state four")
+		sleep(1)
+		self.fourtofive.emit()
 		pass
 
 	#
@@ -94,6 +83,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_one(self):
 		print("Entered state one")
+		sleep(1)
+		self.onetotwo.emit()
 		pass
 
 	#
@@ -101,6 +92,7 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_five(self):
 		print("Entered state five")
+		sleep(1)
 		pass
 
 	#
@@ -109,6 +101,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test2sub1(self):
 		print("Entered state test2sub1")
+		sleep(1)
+		self.test2sub1totest2sub1.emit()
 		pass
 
 	#
@@ -117,6 +111,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test2sub2(self):
 		print("Entered state test2sub2")
+		sleep(1)
+		self.test2sub2totest2sub2.emit()
 		pass
 
 	#
@@ -125,6 +121,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test2sub21(self):
 		print("Entered state test2sub21")
+		sleep(1)
+		self.test2sub21totest2sub21.emit()
 		pass
 
 	#
@@ -133,6 +131,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test2sub22(self):
 		print("Entered state test2sub22")
+		sleep(1)
+		# self.test2sub22to__.emit()
 		pass
 
 	#
@@ -141,6 +141,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test3sub1(self):
 		print("Entered state test3sub1")
+		sleep(1)
+		self.test3sub1totest3sub1.emit()
 		pass
 
 	#
@@ -149,6 +151,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test3sub2(self):
 		print("Entered state test3sub2")
+		sleep(1)
+		self.test3sub2totest3sub2.emit()
 		pass
 
 	#
@@ -156,7 +160,9 @@ class SpecificWorker(GenericWorker):
 	#
 	@QtCore.Slot()
 	def sm_test3sub3(self):
+		# self.test3sub3to_.emit()
 		print("Entered state test3sub3")
+		sleep(1)
 		pass
 
 	#
@@ -165,6 +171,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test4sub2(self):
 		print("Entered state test4sub2")
+		sleep(1)
+		self.test4sub2totest4sub1.emit()
 		pass
 
 	#
@@ -173,6 +181,8 @@ class SpecificWorker(GenericWorker):
 	@QtCore.Slot()
 	def sm_test4sub1(self):
 		print("Entered state test4sub1")
+		sleep(1)
+		self.test4sub1totest4sub2.emit()
 		pass
 
 
