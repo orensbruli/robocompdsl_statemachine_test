@@ -89,7 +89,6 @@ public slots:
 	virtual void sm_five() = 0;
 
 //-------------------------
-    virtual void compute() = 0;
     virtual void initialize(int period) = 0;
 	
 signals:

@@ -40,7 +40,6 @@ public:
 
 
 public slots:
-	void compute();
 	void initialize(int period);
 //Specification slot funtions State Machine
 	void sm_two();

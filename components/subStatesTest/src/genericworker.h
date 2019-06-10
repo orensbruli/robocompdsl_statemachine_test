@@ -107,7 +107,6 @@ public slots:
 	virtual void sm_test4sub1() = 0;
 
 //-------------------------
-    virtual void compute() = 0;
     virtual void initialize(int period) = 0;
 	
 signals:
