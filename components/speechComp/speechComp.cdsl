@@ -1,0 +1,12 @@
+import "Speech.idsl";
+
+Component speechComp
+{
+	Communications
+	{
+		implements Speech;
+	};
+	language python;
+	statemachine "statemachine.smdsl";
+};
+
